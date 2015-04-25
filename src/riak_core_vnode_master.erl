@@ -213,7 +213,8 @@ do_proxy_cast({VMaster, Node}, Req=?COVERAGE_REQ{index=Idx}, How) ->
     ok.
 
 send_an_event(Dest, Event, normal) ->
-    gen_fsm:send_event(Dest, Event);
+    % gen_fsm:send_event(Dest, Event);
+    teleport:gf_send_event(Dest, Event);
 send_an_event(Dest, Event, unreliable) ->
     riak_core_send_msg:send_event_unreliable(Dest, Event).
 
